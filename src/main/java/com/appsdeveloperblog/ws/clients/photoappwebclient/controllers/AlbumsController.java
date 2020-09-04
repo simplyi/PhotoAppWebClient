@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,10 @@ public class AlbumsController {
 		
 		System.out.println("Principal = " + principal);
 		
+		OidcIdToken idToken = principal.getIdToken();
+		String idTokenValue = idToken.getTokenValue();
+		System.out.println("idTokenValue = " + idTokenValue);
+ 
 		AlbumRest album = new AlbumRest();
 		album.setAlbumId("albumOne");
 		album.setAlbumTitle("Album one title");
